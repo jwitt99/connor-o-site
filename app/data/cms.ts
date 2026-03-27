@@ -33,45 +33,66 @@ export interface Education {
 export const galleryData: GalleryItem[] = [
   {
     id: 1,
-    title: "Project Alpha",
-    description: "A web application built with React and Node.js",
-    imageUrl: "/assets/gallery/project-1.jpg",
-    category: "Web Development",
+    title: "A Bronx Tale",
+    description: "Dir. Billy Surges",
+    imageUrl: "/assets/gallery/A Bronx Tale, Dir. Billy Surges.webp",
+    category: "Theater",
   },
   {
     id: 2,
-    title: "Design System",
-    description: "Comprehensive UI component library",
-    imageUrl: "/assets/gallery/project-2.jpg",
-    category: "Design",
+    title: "Along the Banks",
+    description: "Dir. Brigid Reilly",
+    imageUrl: "/assets/gallery/Along the Banks, Dir. Brigid Reilly.webp",
+    category: "Theater",
   },
   {
     id: 3,
-    title: "Mobile App",
-    description: "Cross-platform mobile application",
-    imageUrl: "/assets/gallery/project-3.jpg",
-    category: "Mobile",
+    title: "Butterflies are Free",
+    description: "Dir. Joey Rizzolo, Photo by John Seyfried",
+    imageUrl: "/assets/gallery/Butterflies are Free, Dir. Joey Rizzolo, Photo by John Seyfried.webp",
+    category: "Theater",
   },
   {
     id: 4,
-    title: "Data Visualization",
-    description: "Interactive dashboard for analytics",
-    imageUrl: "/assets/gallery/project-4.jpg",
-    category: "Data",
+    title: "Dave, Who is Not Dave",
+    description: "Dir. Kylie Gutierrez",
+    imageUrl: "/assets/gallery/Dave, Who is Not Dave, Dir. Kylie Gutierrez.webp",
+    category: "Theater",
   },
   {
     id: 5,
-    title: "E-commerce Platform",
-    description: "Full-stack shopping experience",
-    imageUrl: "/assets/gallery/project-5.jpg",
-    category: "Web Development",
+    title: "La Ronde",
+    description: "Dir. Ramona Rotten",
+    imageUrl: "/assets/gallery/La Ronde, Dir. Ramona Rotten.webp",
+    category: "Theater",
   },
   {
     id: 6,
-    title: "Brand Identity",
-    description: "Complete branding package for startup",
-    imageUrl: "/assets/gallery/project-6.jpg",
-    category: "Design",
+    title: "Measure for Measure",
+    description: "Dir. Paul Moser, Photo by John Seyfried",
+    imageUrl: "/assets/gallery/Measure for Measure, Dir. Paul Moser, Photo by John Seyfried.webp",
+    category: "Theater",
+  },
+  {
+    id: 7,
+    title: "The Distrikt of Lake Michigun",
+    description: "Dir. Seth Wilson",
+    imageUrl: "/assets/gallery/The Distrikt of Lake Michigun, Dir. Seth Wilson.webp",
+    category: "Theater",
+  },
+  {
+    id: 8,
+    title: "The Ill-Conceived, Poorly Executed House Warming Party of Amy & Jaime",
+    description: "Dir. Ray Morgan",
+    imageUrl: "/assets/gallery/The Ill-Conceived, Poorly Executed House Warming Party of Amy & Jaime, Dir. Ray Morgan.webp",
+    category: "Theater",
+  },
+  {
+    id: 9,
+    title: "Three Sisters",
+    description: "Dir. Audrey Napoli, Photo by Joe Mazza",
+    imageUrl: "/assets/gallery/Three Sisters, Dir. Audrey Napoli, Photo by Joe Mazza.webp",
+    category: "Theater",
   },
 ];
 
@@ -151,10 +172,21 @@ export const skills = [
 ];
 
 export const contactInfo = {
-  email: "connor.locklin@example.com",
-  linkedin: "linkedin.com/in/connor-locklin",
-  github: "github.com/connor-locklin",
-  twitter: "twitter.com/connor_locklin",
+  email: "Connorolocklin@gmail.com",
+  phone: "(860) 990-7996",
+  instagram: "Instagram",
+};
+
+export const agentData = {
+  name: "Actors Talent Group Inc.",
+  building: "Fine Arts Building",
+  address: "410 South Michigan Av., Suite 733",
+  city: "Chicago",
+  state: "IL",
+  zip: "60605",
+  country: "USA",
+  phone: "(312) 588-1309",
+  fax: "(312) 588-1579",
 };
 
 export const profileData = {
@@ -162,4 +194,5 @@ export const profileData = {
   headshotUrl: "/assets/headshot.jpg",
   bio: "Chicago based Actor, Writer, Singer, and Improvisor",
   title: "Software Engineer & Designer",
+  resumeUrl: "/assets/connor-o-resume.pdf",
 };
