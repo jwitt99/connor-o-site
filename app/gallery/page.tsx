@@ -1,7 +1,17 @@
 import Image from "next/image";
-import { galleryData } from "../data/cms";
+import { sanityFetch } from "@/sanity/live";
+import { urlFor } from "@/sanity/image";
 
-export default function Gallery() {
+export default async function Gallery() {
+  const { data: galleryItems } = await sanityFetch({
+    query: `*[_type == "galleryItem"] | order(order asc) {
+      _id,
+      title,
+      description,
+      image,
+      order
+    }`,
+  });
   return (
     <main className="flex-1">
       <section className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
@@ -14,14 +24,14 @@ export default function Gallery() {
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-3">
-          {galleryData.map((item) => (
+          {galleryItems.map((item: any) => (
             <article
-              key={item.id}
+              key={item._id}
               className="flex flex-col items-start justify-between rounded-2xl border border-zinc-200 overflow-hidden dark:border-zinc-800"
             >
               <div className="relative h-80 w-full">
                 <Image
-                  src={item.imageUrl}
+                  src={urlFor(item.image).width(800).height(600).url()}
                   alt={item.title}
                   fill
                   className="object-cover"

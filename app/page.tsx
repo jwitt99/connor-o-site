@@ -1,13 +1,35 @@
 import Image from "next/image";
-import { profileData } from "./data/cms";
+import { sanityFetch } from "@/sanity/live";
+import { urlFor } from "@/sanity/image";
+import type { Metadata } from "next";
 
-export default function Home() {
+export async function generateMetadata(): Promise<Metadata> {
+  const { data: siteSettings } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0] {
+      title
+    }`,
+  });
+
+  return {
+    title: siteSettings.title,
+  };
+}
+
+export default async function Home() {
+  const { data: siteSettings } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0] {
+      profileName,
+      headshot,
+      bio,
+      title
+    }`,
+  });
   return (
     <main className="flex-1 relative">
       <div className="absolute inset-0 z-0">
         <Image
-          src={profileData.headshotUrl}
-          alt={profileData.name}
+          src={urlFor(siteSettings.headshot).width(1920).height(1080).url()}
+          alt={siteSettings.profileName}
           fill
           className="object-cover object-[center_20%]"
           priority
@@ -18,10 +40,10 @@ export default function Home() {
       <section className="relative z-10 py-24 sm:py-32 min-h-[calc(100vh-73px)] flex items-center">
         <div className="text-left ml-20">
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-            {profileData.name}
+            {siteSettings.profileName}
           </h1>
           <p className="mt-6 text-2xl leading-8 text-zinc-200">
-            {profileData.bio}
+            {siteSettings.bio}
           </p>
           <div className="mt-10 flex items-center justify-start gap-x-6">
             <a
