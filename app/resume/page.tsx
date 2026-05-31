@@ -2,6 +2,9 @@ import { sanityFetch } from "@/sanity/live";
 import { client } from "@/sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const builder = imageUrlBuilder(client);
 
 function getFileUrl(ref: any) {

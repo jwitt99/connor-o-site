@@ -2,6 +2,9 @@ import Image from "next/image";
 import { sanityFetch } from "@/sanity/live";
 import { urlFor } from "@/sanity/image";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function Gallery() {
   const { data: galleryItems } = await sanityFetch({
     query: `*[_type == "galleryItem"] | order(order asc) {
@@ -15,15 +18,7 @@ export default async function Gallery() {
   return (
     <main className="flex-1">
       <section className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
-        <div className="mx-auto max-w-2xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl">
-            Gallery
-          </h1>
-          <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            A collection of photos of theatrical work.
-          </p>
-        </div>
-        <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-3">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
           {galleryItems.map((item: any) => (
             <article
               key={item._id}

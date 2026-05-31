@@ -1,6 +1,9 @@
 import { sanityFetch } from "@/sanity/live";
 import { urlFor } from "@/sanity/image";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 function getYouTubeVideoId(url: string): string | null {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
@@ -27,12 +30,6 @@ export default async function Writing() {
   return (
     <main className="flex-1">
       <section className="mx-auto max-w-6xl px-6 py-24 sm:py-32">
-        <div className="mb-16 text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl">
-            Writing
-          </h1>
-        </div>
-
         <div className="space-y-8">
           {writings.map((writing: any) => (
             <article
