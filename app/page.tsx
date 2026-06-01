@@ -9,12 +9,37 @@ export const revalidate = 0;
 export async function generateMetadata(): Promise<Metadata> {
   const { data: siteSettings } = await sanityFetch({
     query: `*[_type == "siteSettings"][0] {
-      title
+      title,
+      profileName,
+      bio,
+      headshot
     }`,
   });
 
   return {
     title: siteSettings.title,
+    description: siteSettings.bio,
+    keywords: ['actor', 'performer', 'theatre', 'film', 'portfolio', siteSettings.profileName],
+    authors: [{ name: siteSettings.profileName }],
+    openGraph: {
+      title: siteSettings.title,
+      description: siteSettings.bio,
+      type: 'website',
+      images: [
+        {
+          url: urlFor(siteSettings.headshot).width(1200).height(630).url(),
+          width: 1200,
+          height: 630,
+          alt: siteSettings.profileName,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: siteSettings.title,
+      description: siteSettings.bio,
+      images: [urlFor(siteSettings.headshot).width(1200).height(630).url()],
+    },
   };
 }
 

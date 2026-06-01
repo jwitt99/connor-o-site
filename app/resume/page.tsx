@@ -1,9 +1,29 @@
 import { sanityFetch } from "@/sanity/live";
 import { client } from "@/sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
+import type { Metadata } from "next";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { data: siteSettings } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0] {
+      title
+    }`,
+  });
+
+  return {
+    title: siteSettings.title,
+    description: 'Professional resume and experience in theatre, film, and performance.',
+    keywords: ['resume', 'CV', 'experience', 'credits', 'acting', 'theatre', 'film'],
+    openGraph: {
+      title: siteSettings.title,
+      description: 'Professional resume and experience in theatre, film, and performance.',
+      type: 'website',
+    },
+  };
+}
 
 const builder = imageUrlBuilder(client);
 

@@ -1,8 +1,28 @@
 import { sanityFetch } from "@/sanity/live";
 import { defineQuery } from "next-sanity";
+import type { Metadata } from "next";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { data: siteSettings } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0] {
+      title
+    }`,
+  });
+
+  return {
+    title: siteSettings.title,
+    description: 'Get in touch for bookings, inquiries, and professional opportunities.',
+    keywords: ['contact', 'booking', 'agent', 'inquiries', 'representation'],
+    openGraph: {
+      title: siteSettings.title,
+      description: 'Get in touch for bookings, inquiries, and professional opportunities.',
+      type: 'website',
+    },
+  };
+}
 
 type ContactInfo = {
   contactEmail?: string;

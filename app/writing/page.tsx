@@ -1,8 +1,28 @@
 import { sanityFetch } from "@/sanity/live";
 import { urlFor } from "@/sanity/image";
+import type { Metadata } from "next";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { data: siteSettings } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0] {
+      title
+    }`,
+  });
+
+  return {
+    title: siteSettings.title,
+    description: 'Original plays, scripts, and theatrical writing works.',
+    keywords: ['writing', 'playwright', 'scripts', 'plays', 'theatre', 'original works'],
+    openGraph: {
+      title: siteSettings.title,
+      description: 'Original plays, scripts, and theatrical writing works.',
+      type: 'website',
+    },
+  };
+}
 
 function getYouTubeVideoId(url: string): string | null {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;

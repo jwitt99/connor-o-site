@@ -1,9 +1,29 @@
 import Image from "next/image";
 import { sanityFetch } from "@/sanity/live";
 import { urlFor } from "@/sanity/image";
+import type { Metadata } from "next";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { data: siteSettings } = await sanityFetch({
+    query: `*[_type == "siteSettings"][0] {
+      title
+    }`,
+  });
+
+  return {
+    title: siteSettings.title,
+    description: 'A collection of photos from theatrical productions and performances.',
+    keywords: ['gallery', 'photos', 'theatre', 'productions', 'performances', 'portfolio'],
+    openGraph: {
+      title: siteSettings.title,
+      description: 'A collection of photos from theatrical productions and performances.',
+      type: 'website',
+    },
+  };
+}
 
 export default async function Gallery() {
   const { data: galleryItems } = await sanityFetch({
